@@ -26,11 +26,8 @@ public class UserInterface {
         System.out.print("\nfind ingredient - searches recipes by ingredient\n");
         
         readFromFile();
-        System.out.println(fileToArray);
         FileToRecetas();
-        System.out.println(recetas);
-
-        //whileFile();
+        whileFile();
     }
     
     public void whileFile(){
@@ -67,20 +64,12 @@ public class UserInterface {
         System.out.println("");
         System.out.println("Recipes:");     
         for(ReceiptAdmin nombres : recetas){
-            listado = nombres.getRecetaIngred();
-            //System.out.println(listado); 
-            //System.out.println(nombres);     
-                for (String items : listado){
-                    //System.out.println(items);            
-                    if(items.equals(items)){                  
+                for (String items : nombres.getRecetaIngred()){
+                    if(items.equals(data)){                  
                         System.out.println(nombres);            
                     }
-                    //if(items.contentEquals(data)){                  
-                   //     System.out.println(nombres);            
-                  //  }
-
-        }
-    }
+                }
+            }
     }                   
     public void findCookingTime(){
         System.out.print("Max cooking time:");
@@ -116,11 +105,9 @@ public class UserInterface {
         int tiempo = 0;
         for (String data : fileToArray){
             if (data.equals("")){
-                //System.out.println(ingredientes);
                 recetas.add(new ReceiptAdmin(nombreReceta, tiempo, ingredientes));
-                //System.out.println(recetas);
+                ingredientes = new ArrayList<>();
                 i = 1;
-                ingredientes.clear();
                 continue;
                 }   
             if (i==1){
@@ -130,14 +117,11 @@ public class UserInterface {
                 tiempo = Integer.valueOf(data);                              
             } 
             if (i > 2){
-                ingredientes.add(data);         
+                ingredientes.add(data);
             }
             i++;
         }
-        //System.out.println(ingredientes);
-        //System.out.println(ingredientes);
-        this.recetas.add(new ReceiptAdmin(nombreReceta, tiempo, ingredientes););
-        //System.out.println(recetas);
+        recetas.add(new ReceiptAdmin(nombreReceta, tiempo, ingredientes));
         return recetas;
         }   
      
